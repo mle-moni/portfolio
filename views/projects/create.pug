@@ -1,0 +1,13 @@
+extends ../base/layout
+
+block content
+	h1 Create new project article
+	form(action=`/projects/create` method="post")
+		div
+			include _form
+
+			div
+				label
+				div
+					input(type="submit" value="Create")
+					a(cancel href="/projects") Cancel

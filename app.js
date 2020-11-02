@@ -4,8 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const db = require("./srv/db/sqlite3");
+db.init(process.env.DB_PATH, err => {
+  if (err) throw err;
+  console.log(`${process.env.DB_PATH} init OK`);
+});
+
+const indexRouter = require('./srv/routes/index');
+const projectsRouter = require('./srv/routes/projects');
+
 
 const app = express();
 
@@ -20,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/projects', projectsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

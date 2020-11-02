@@ -1,0 +1,13 @@
+extends ../base/layout
+
+block content
+	h1 Edit #{model.title}
+	form(action=`/projects/edit/${model.id}` method="post")
+		div
+			include _form
+
+			div
+				label
+				div
+					input(type="submit" value="Update")
+					a(cancel href="/projects") Cancel

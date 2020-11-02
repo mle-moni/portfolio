@@ -1,0 +1,23 @@
+extends ../base/layout
+
+block content
+	h1 Projects list (#{model.length})
+	
+	div
+		table
+			thead
+				tr
+					th Title
+					th Description
+					th Interest
+					th
+						a(href="/projects/create") Add
+			tbody
+				each project in model
+					tr
+						td #{project.title}
+						td #{project.description}
+						td #{project.interest}
+						td
+							a(href=`/projects/edit/${project.id}`) Edit
+							a(href=`/projects/delete/${project.id}`) Delete

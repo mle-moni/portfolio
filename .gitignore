@@ -117,3 +117,6 @@ dist
 
 # IDE files
 .idea
+
+#db files
+*.db

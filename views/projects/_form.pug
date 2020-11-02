@@ -1,0 +1,20 @@
+-
+	var textFields = [
+		{name: "title", label: "Title", special: {autofocus: true}},
+		{name: "type", label: "Project type (cli-app, web, lib...)"},
+		{name: "os", label: "Os(s) than run this project"},
+		{name: "description", label: "Short description"},
+		{name: "demo", label: "Link to a demo of this project"},
+		{name: "github", label: "Link to the repo of this project"},
+		{name: "tags", label: "List the exhaustive tech stack of this project"}
+	]
+include ../base/_multiple_text_fields
+
+div
+	label(for="content") Actual article about the project
+	div
+		textarea(cols="20" name="content" maxlength="32000" rows="7") #{model.content}
+div
+	label(for="interest") Rate the interest of the project
+	div
+		input(type="number" name="interest" min="0" max="1000000" value=`${model.interest || 0}`)
