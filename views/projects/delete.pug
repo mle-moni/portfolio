@@ -1,0 +1,16 @@
+extends ../base/layout
+
+block content
+	h1 Confirm deletion of #{model.title}
+	form(action=`/projects/delete/${model.id}` method="post")
+		div
+			div
+				label(for="password") Authentification
+				div
+					input(type="password" name="password")
+
+			div
+				label
+				div
+					input(type="submit" value=`Delete ${model.title}`)
+					a(cancel href="/projects") Cancel
