@@ -2,7 +2,7 @@ extends ../base/layout
 
 block content
 	h1 Create new project article
-	form(action=`/projects/create` method="post")
+	form(action=`/projects/create` enctype="multipart/form-data" method="post")
 		div
 			include _form
 

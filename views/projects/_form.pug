@@ -18,7 +18,17 @@ div
 	label(for="interest") Rate the interest of the project
 	div
 		input(type="number" name="interest" min="0" max="1000000" value=`${model.interest || 0}`)
+if model.imgname
+	img#projectImg(src=`/uploads/projects/${model.id}/${model.imgname}` width=300 style=`display: block;`)
+else
+	img#projectImg(width=300 style=`display: none;`)
+div
+	label(for="image") Upload an image for this project
+	div
+		input(type="file" accept="image/x-png,image/gif,image/jpeg" name="image" onchange="printImg(this)")
 div
 	label(for="password") Authentification
 	div
 		input(type="password" name="password")
+
+script(src="/js/forms.js")

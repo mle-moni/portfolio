@@ -1,7 +1,18 @@
 extends base/layout
 
+block scripts
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.11.0/underscore-min.js" integrity="sha512-wBiNJt1JXeA/ra9F8K2jyO4Bnxr0dRPsy7JaMqSlxqTjUGHe1Z+Fm5HMjCWqkIYvp/oCbdJEivZ5pLvAtK0csQ==" crossorigin="anonymous")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.0/backbone-min.js" integrity="sha512-9EgQDzuYx8wJBppM4hcxK8iXc5a1rFLp/Chug4kIcSWRDEgjMiClF8Y3Ja9/0t8RDDg19IfY5rs6zaPS9eaEBw==" crossorigin="anonymous")
 block content
   h1 LE MONIES DE SAGAZAN Mayeul
   h2 Student at
     a(href="https://42.fr/en")
       img(src="/images/svgs/42.svg", alt="logo 42 school" height="100px")
+
+  h2 My projects:
+  div#projects(style="visibility: hidden;") #{allProjects}
+
+  script window.allProjects = JSON.parse(`${$("#projects")[0].innerHTML}`)
+
+  script(type="module" src="/js/app.js")

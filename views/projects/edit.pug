@@ -2,7 +2,7 @@ extends ../base/layout
 
 block content
 	h1 Edit #{model.title}
-	form(action=`/projects/edit/${model.id}` method="post")
+	form(action=`/projects/edit/${model.id}` enctype="multipart/form-data" method="post")
 		div
 			include _form
 

@@ -4,6 +4,7 @@ html
     title Mayeul - Portfolio
     link(rel='stylesheet', href='/style/style.min.css')
     link(rel="icon" type="image/png" href="/images/icons/apple-touch-icon.png")
+    block scripts
   body
     if model && model.error
       h2 Error: #{model.error}
