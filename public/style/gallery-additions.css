@@ -1,1 +1,14 @@
-null
+.notvisible {
+  opacity: 0;
+}
+
+#sortbox {
+  background-color: #daa45c;
+}
+
+.githubico {
+  background-image: url("/images/icons/git.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

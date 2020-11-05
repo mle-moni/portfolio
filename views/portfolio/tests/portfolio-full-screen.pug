@@ -15,25 +15,26 @@ html(lang='en')
 		link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
 	body
 		// Navbar and Header
-		nav.nav-extended(style="user-select: none;")
-			.nav-background(style="opacity: 1;")
-				.pattern.active(style="background-image: url('/images/content/clouds2.png');")
+		nav.nav-extended.nav-full-header.teal.lighten-2(style="user-select: none;")
+			.nav-background
+				img.active(src='/images/content/clouds.jpg')
+				img(src='/images/content/42-school.jpg')
 			.nav-wrapper.container
-				a.brand-logo(href='mailto:m.lemoniesdesagazan@gmail.com' style="color: #daa45c;")
+				a.brand-logo(href='mailto:m.lemoniesdesagazan@gmail.com')
 					i.material-icons mail
 					| Email me
 				//- a.sidenav-trigger(href='#' data-target='nav-mobile')
 					i.material-icons menu
 				ul.right.hide-on-med-and-down.notvisible
+					li
+						a(href='/') Gallery
+					li
+						a(href='/') Dark Theme
+					li
+						a(href='/') Blog
+					li
+						a(href='/') Docs
 					li.active
-						a(href='#') Gallery
-					li
-						a(href='#') Dark Theme
-					li
-						a(href='#') Blog
-					li
-						a(href='#') Docs
-					li
 						a.dropdown-trigger(href='#' data-target='feature-dropdown')
 							| Features
 							i.material-icons.right arrow_drop_down
@@ -45,11 +46,19 @@ html(lang='en')
 						a(href='horizontal.html') Horizontal Style
 					li
 						a(href='no-image.html') No Image Expand
-				.nav-header.center(style="color: #393f4a;")
-					h1 LE MONIES DE SAGAZAN Mayeul
-					.tagline(style="font-size: 20px; color: #7b7f87;") Projects
+			.nav-header.valign-wrapper
+				.carousel.carousel-slider.center(data-indicators='true')
+					.carousel-item.white-text(href='#one!')
+						.container.valign-wrapper
+							h1 LE MONIES DE SAGAZAN Mayeul
+					.carousel-item.white-text(href='#two!')
+						.container.valign-wrapper
+							h1 Student at
+								a(href="https://42.fr/en")
+								img(src="/images/svgs/42.svg", alt="logo 42 school" height="100px" style="position: relative; top: 30px;")
+								| Paris
 			// Fixed Masonry Filters
-			.categories-wrapper.lighten-1#sortbox
+			.categories-wrapper.amber.darken-3
 				.categories-container
 					ul.categories.container
 						li.active
@@ -61,32 +70,32 @@ html(lang='en')
 						li
 							a(href='#sacred') Sacred Geometry
 		ul#nav-mobile.sidenav.notvisible
-			li.active
-				a(href='#')
+			li
+				a(href='/')
 					i.material-icons camera
 					| Gallery
 			li
-				a(href='#')
+				a(href='/')
 					i.material-icons brightness_3
 					| Dark Theme
 			li
-				a(href='#')
+				a(href='/')
 					i.material-icons edit
 					| Blog
 			li
-				a(href='#')
+				a(href='/')
 					i.material-icons school
 					| Docs
-			li
-				a(href='#')
+			li.active
+				a(href='/')
 					i.material-icons fullscreen
 					| Fullscreen Header
 			li
-				a(href='#')
+				a(href='/')
 					i.material-icons swap_horiz
 					| Horizontal Style
 			li
-				a(href='#')
+				a(href='/')
 					i.material-icons texture
 					| No Image Expand
 		// Gallery
@@ -94,16 +103,16 @@ html(lang='en')
 			.container
 				.gallery.row#projects
 					include portfolio/_gallery
-
+		
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 		
 		template#dataProjects #{allProjects}
 		script window.allProjects = JSON.parse(`${$("#dataProjects")[0].innerHTML}`)
-
+		
 		// Core Javascript
-		script(src='js/lib/imagesloaded.pkgd.min.js')
-		script(src='js/lib/masonry.pkgd.min.js')
-		script(src='js/lib/materialize.min.js')
-		script(src='js/lib/color-thief.min.js')
-		script(src='js/lib/galleryExpand.js')
-		script(src='js/lib/init.js')
+		script(src='js/imagesloaded.pkgd.min.js')
+		script(src='js/masonry.pkgd.min.js')
+		script(src='js/materialize.min.js')
+		script(src='js/color-thief.min.js')
+		script(src='js/galleryExpand.js')
+		script(src='js/init.js')
