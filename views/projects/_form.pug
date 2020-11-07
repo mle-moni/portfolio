@@ -1,8 +1,6 @@
 -
 	var textFields = [
 		{name: "title", label: "Title", special: {autofocus: true}},
-		{name: "type", label: "Project type (cli-app, web, lib...)"},
-		{name: "os", label: "Os(s) than run this project"},
 		{name: "description", label: "Short description"},
 		{name: "demo", label: "Link to a demo of this project"},
 		{name: "github", label: "Link to the repo of this project"},
@@ -10,25 +8,81 @@
 	]
 include ../base/_multiple_text_fields
 
-div
-	label(for="content") Actual article about the project
-	div
-		textarea(cols="20" name="content" maxlength="32000" rows="7") #{model.content}
-div
-	label(for="interest") Rate the interest of the project
-	div
-		input(type="number" name="interest" min="0" max="1000000" value=`${model.interest || 0}`)
+.row
+	label.mylabeltext Project type
+	p
+		label
+			if model.type == "web" || !model.type
+				input(name='type' type='radio' checked value="web")
+			else
+				input(name='type' type='radio' value="web")
+			span Web
+	p
+		label
+			if model.type == "cli-app"
+				input(name='type' type='radio' checked value="cli-app")
+			else
+				input(name='type' type='radio' value="cli-app")
+			span Command line app
+	p
+		label
+			if model.type == "lib"
+				input(name='type' type='radio' checked value="lib")
+			else
+				input(name='type' type='radio' value="lib")
+			span Library
+
+.row
+	.input-field.col.s12
+		textarea#projectContent.materialize-textarea(name="content" length='120') #{model.content}
+		label(for="content") Actual article about the project
+.row
+	label.mylabeltext Os(s) than run this project
+	p
+		label
+			input.oslist(type='checkbox' id="osList-Linux" onchange="updateOsList(this)")
+			span Linux
+	p
+		label
+			input.oslist(type='checkbox' id="osList-Windows" onchange="updateOsList(this)")
+			span Windows
+	p
+		label
+			input.oslist(type='checkbox' id="osList-Mac" onchange="updateOsList(this)")
+			span Mac
+	p
+		label
+			input.oslist(type='checkbox' id="osList-IOS" onchange="updateOsList(this)")
+			span IOS
+	p
+		label
+			input.oslist(type='checkbox' id="osList-Android" onchange="updateOsList(this)")
+			span Android
+	p
+		label
+			input.filled-in(type='checkbox' id="osListCheckAll" onchange="checkAll(this)")
+			span All of the above
+	div.input-field.col.s12
+		input(type="text" disabled id="osListView" value=`${model.os || ""}`)
+	
+	input(type="hidden" name="os" id="osListViewHidden" value=`${model.os || ""}`)
+
+.row
+	p.range-field
+		label.mylabeltext(for="interest") Rate the interest of the project
+		input(type='range' min='0' max='100' name="interest" value=`${model.interest || 0}`)
 if model.imgname
 	img#projectImg(src=`/uploads/projects/${model.id}/${model.imgname}` width=300 style=`display: block;`)
 else
 	img#projectImg(width=300 style=`display: none;`)
+.file-field.input-field
+	.btn
+		span Image
+		input(type='file' onchange="printImg(this)" name="image")
+	.file-path-wrapper
+		input.file-path.validate(type='text')
 div
-	label(for="image") Upload an image for this project
-	div
-		input(type="file" accept="image/x-png,image/gif,image/jpeg" name="image" onchange="printImg(this)")
-div
-	label(for="password") Authentification
+	label.mylabeltext(for="password") Authentification
 	div
 		input(type="password" name="password")
-
 script(src="/js/forms.js")

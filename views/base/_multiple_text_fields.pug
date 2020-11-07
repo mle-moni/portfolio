@@ -1,10 +1,10 @@
 //- this file need the variable textFields
 
 each field in textFields
-	div
-		label(for=`${field.name}`) #{field.label}
-		div
+	.row
+		div.input-field.col.s12
 			if field.special && field.special.autofocus
-				input(autofocus name=`${field.name}` value=`${model[field.name] || ""}`)
+				input(type="text" id=`${field.name}` autofocus name=`${field.name}` value=`${model[field.name] || ""}`)
 			else
-				input(name=`${field.name}` value=`${model[field.name] || ""}`)
+				input(type="text" name=`${field.name}` value=`${model[field.name] || ""}`)
+			label(for=`${field.name}`) #{field.label}

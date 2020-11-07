@@ -32,8 +32,9 @@ router.get('/edit/:id', function(req, res, next) {
 
 router.post("/edit/:id", uploadProject.single("image"), function (req, res) {
 	const id = req.params.id;
+	console.log(req.body)
 	if (req.body.password != process.env.APP_PASSWD) {
-		res.status(403);
+		res.status(401);
 		req.body.error = "bad password";
 		res.render("projects/edit", { model: req.body });
 		return ;
@@ -55,7 +56,6 @@ router.post("/edit/:id", uploadProject.single("image"), function (req, res) {
 		if (err) return console.error(err.message);
 		const projectID = id;
 		const targetPath = path.join(`./public/uploads/projects/${projectID}/`);
-		console.log(req.file)
 		if (!req.file) {
 			res.redirect("/projects");
 			return ;
@@ -81,9 +81,8 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", uploadProject.single("image"), function (req, res) {
-	console.log(req.body)
 	if (req.body.password != process.env.APP_PASSWD) {
-		res.status(403);
+		res.status(401);
 		req.body.error = "bad password";
 		res.render("projects/create", { model: req.body });
 		return ;
@@ -105,7 +104,6 @@ router.post("/create", uploadProject.single("image"), function (req, res) {
 		if (err) return console.error(err.message);
 		const projectID = this.lastID;
 		const targetPath = path.join(`./public/uploads/projects/${projectID}/`);
-		console.log(req.file)
 		if (!req.file) {
 			res.redirect("/projects");
 			return ;
@@ -119,7 +117,8 @@ router.post("/create", uploadProject.single("image"), function (req, res) {
 		}, (fileExtname) => {
 			res.status(403);
 			req.body.error = `File extension not allowed ${fileExtname}`;
-			res.render("projects/create", { model: req.body });
+			req.body.id = projectID;
+			res.render("projects/edit", { model: req.body });
 			return ;
 		});
 	});
@@ -141,7 +140,7 @@ router.post("/delete/:id", (req, res) => {
 	db.get(sql, id, (err, row) => {
 		if (err) return console.error(err.message);
 		if (req.body.password != process.env.APP_PASSWD) {
-			res.status(403);
+			res.status(401);
 			row.error = "bad password";
 			res.render("projects/delete", { model: row});
 			return ;
@@ -158,12 +157,10 @@ router.post("/delete/:id", (req, res) => {
 function checkAndRenameUpload(req, targetPath, filenameBody, succescallback, failcallback) {
 	const tempPath = req.file.path;
 	const fileExtname = path.extname(req.file.originalname).toLowerCase();
-	console.log(`fileExtname = ${fileExtname}`)
 	switch (fileExtname) {
 		case ".png":
 		case ".jpg":
 		case ".jpeg":
-			console.log("will RENAME")
 			fs.promises.mkdir(targetPath, { recursive: true })
 			.then(() => {
 				fs.rename(tempPath, `${targetPath}${filenameBody}${fileExtname}`, err => {
