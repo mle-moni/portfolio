@@ -13,7 +13,7 @@ each project in model
 				if project.demo && project.demo != ""
 					a(href=`${project.demo}`) Demo
 				p.description(style="white-space:pre-wrap;") #{project.content}
-				.carousel-wrapper
+				//- .carousel-wrapper
 					.carousel
 						a.carousel-item(href='#')
 							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
