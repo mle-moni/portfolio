@@ -4,11 +4,16 @@ each project in model
 			a.gallery-cover.gray
 				img.responsive-img(src=`/uploads/projects/${project.id}/${project.imgname}` alt=`${project.description}` style="max-width:350px;")
 			.gallery-header
-				span #{project.title}
+				span(style="font-size: 22px;") #{project.title}
+				br
+				- var tags = project.tags.split(" ")
+				include _chips
 			.gallery-body
 				.title-wrapper
 					h3 #{project.title}
 					span.price #{project.type}
+					br
+					include _chips
 				p.description #{project.description}
 				if project.demo && project.demo != ""
 					a(href=`${project.demo}`) Demo
