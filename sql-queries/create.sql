@@ -10,5 +10,6 @@ CREATE TABLE IF NOT EXISTS projects (
 	imgname VARCHAR(255),
 	content TEXT,
 	interest INTEGER,
-	tags TEXT
+	tags TEXT,
+	carrousel_images TEXT
 );

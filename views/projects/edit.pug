@@ -5,11 +5,10 @@ block content
 		form(action=`/projects/edit/${model.id}` enctype="multipart/form-data" method="post" autocomplete="off")
 			h1.center-align.header.myred-text Edit: #{model.title}
 			div.col.s12
+				- model.edit = true
 				include _form
-
 				.row
-					div.row
-						button.btn.waves-effect.waves-light(type='submit' name='action')
-							| Update
-							i.material-icons.right send
-						a.waves-effect.waves-light.btn.myred(cancel href="/projects") Cancel
+					button.btn.waves-effect.waves-light(type='submit' name='action')
+						| Update
+						i.material-icons.right send
+					a.waves-effect.waves-light.btn.myred(cancel href="/projects") Cancel

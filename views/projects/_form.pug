@@ -35,7 +35,7 @@ include ../base/_multiple_text_fields
 .row
 	.input-field.col.s12
 		textarea#projectContent.materialize-textarea(name="content" length='120') #{model.content}
-		label(for="content") Actual article about the project
+		label.mylabeltext(for="content") Actual article about the project
 .row
 	label.mylabeltext Os(s) than run this project
 	p
@@ -81,6 +81,14 @@ else
 		input(type='file' onchange="printImg(this)" name="image")
 	.file-path-wrapper
 		input.file-path.validate(type='text')
+if model.edit
+	.file-field.input-field
+		.btn
+			span Carrousel
+			input(type='file' multiple='' name="carrousel_images")
+		.file-path-wrapper
+			input.file-path.validate(type='text' placeholder='You can upload images that will be displayed in a carrousel (replace all previous carrousel images)')
+
 div
 	label.mylabeltext(for="password") Authentification
 	div

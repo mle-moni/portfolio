@@ -4,31 +4,33 @@ each project in model
 			a.gallery-cover.gray
 				img.responsive-img(src=`/uploads/projects/${project.id}/${project.imgname}` alt=`${project.description}` style="max-width:350px;")
 			.gallery-header
-				span(style="font-size: 22px;") #{project.title}
+				span(style="font-size: 15px;") #{project.title}
 				br
-				- var tags = project.tags.split(" ")
-				include _chips
 			.gallery-body
 				.title-wrapper
 					h3 #{project.title}
-					span.price #{project.type}
-					br
-					include _chips
-				p.description #{project.description}
+					//- span.price(style="font-size: 33px;") #{project.type}
+					
+				p.description.center-align #{project.description}
+				- var tags = project.tags.split(" ")
+				- var chipStyle = "background-color: #bbdefb;"
+				include _chips
+				br
+				- var tags = project.os.split(" ")
+				- var chipStyle = "background-color: #cfd8dc"
+				include _chips
+				br
+				br
 				if project.demo && project.demo != ""
-					a(href=`${project.demo}`) Demo
+					a.demolink(href=`${project.demo}`) Demo
 				p.description(style="white-space:pre-wrap;") #{project.content}
-				//- .carousel-wrapper
-					.carousel
-						a.carousel-item(href='#')
-							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
-						a.carousel-item(href='#')
-							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
-						a.carousel-item(href='#')
-							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
-						a.carousel-item(href='#')
-							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
-						a.carousel-item(href='#')
-							img(src=`/uploads/projects/${project.id}/${project.imgname}` style="max-height:200px;")
+				- let imagesNumber = parseInt(project.carrousel_images)
+				if imagesNumber > 0
+					.carousel-wrapper
+						.carousel
+							- for (let i = 0; i < imagesNumber; i++) {
+							a.carousel-item(href='#')
+								img(src=`/uploads/projects/${project.id}/carrousel${i}.jpg` style="max-height:200px;")
+							- }
 			.gallery-action
 				a.btn-floating.btn-large.waves-effect.waves-light.githubico(href=`${project.github}`)
