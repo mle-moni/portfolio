@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "source ./.env && node ./bin/www"
+    "start": "./start.sh"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
