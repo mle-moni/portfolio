@@ -112,5 +112,14 @@
       inDuration: 500,
     });
 
+    // format all articles with markdown
+    $(".articlecontent").each( function () {
+      const mdText = marked($(this).text());
+      const mdSanitized = DOMPurify.sanitize(mdText);
+      $(this).html(mdSanitized);
+      $(this).find("ul").each(function() {
+        $(this).addClass("browser-default")
+      });
+    });
   }); // end of document ready
 })(jQuery); // end of jQuery name space

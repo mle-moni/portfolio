@@ -23,7 +23,7 @@ each project in model
 				br
 				if project.demo && project.demo != ""
 					a.demolink(href=`${project.demo}`) Demo
-				p.description(style="white-space:pre-wrap;") #{project.content}
+				p.description.articlecontent #{project.content}
 				- let imagesNumber = parseInt(project.carrousel_images)
 				if imagesNumber > 0
 					.carousel-wrapper
