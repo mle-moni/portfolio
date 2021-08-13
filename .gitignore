@@ -122,3 +122,5 @@ dist
 *.db
 
 public/uploads
+.well-known/
+.test/

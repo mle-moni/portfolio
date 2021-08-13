@@ -1,3 +1,5 @@
 #!/bin/bash
 
-source ./.env && node ./bin/www
+source ~/.nvm/nvm.sh
+source ./.env && nvm run 14 ./bin/www
+# source ./.env && node ./bin/www
