@@ -24,7 +24,8 @@ html(lang='en')
 		// Navbar and Header
 		nav.nav-extended(style="user-select: none;")
 			.nav-background(style="opacity: 1;")
-				.pattern.active(style="background-image: url('/images/content/clouds2.png');")
+				.pattern.active(style="z-index: 1;background-image: url('/images/content/clouds2.png'); width: 1920px; background-position: left top; margin: 0;")
+				div(style="background: url('/images/content/clouds2.png'); background-position: right; height: 100%; transform: scaleX(-1); filter: grayscale(100%);")
 			.nav-wrapper.container
 				a.brand-logo(href='mailto:m.lemoniesdesagazan@gmail.com' style="color: #daa45c;")
 					i.material-icons mail
